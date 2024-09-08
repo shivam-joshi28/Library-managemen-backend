@@ -8,9 +8,10 @@ const issueBook = async (req, res) => {
   try {
     const { bookName, userId, issueDate } = req.body;
 
-
     // Validate if the book exists
-    const book = await Book.findOne({ name: bookName });
+    const book = await Book.findOne({
+      name: { $regex: bookName, $options: "i" },
+    });
     if (!book) {
       return res.status(404).json({ message: "Book not found" });
     }
@@ -58,7 +59,9 @@ const returnBook = async (req, res) => {
     }
 
     // Find the book by its name
-    const book = await Book.findOne({ name: bookName });
+    const book = await Book.findOne({
+      name: { $regex: bookName, $options: "i" },
+    });
     if (!book) {
       return res.status(404).json({ message: "Book not found" });
     }
