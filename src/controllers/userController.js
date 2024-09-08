@@ -1,7 +1,7 @@
 // controllers/userController.js
 const User = require("../models/user");
 
-// Create a new user
+// API to Create a new user
 const createUser = async (req, res) => {
   try {
     const newUser = new User({
@@ -22,7 +22,7 @@ const createUser = async (req, res) => {
   }
 };
 
-// Get all users
+// API to Get all users
 const getUsers = async (req, res) => {
   try {
     const users = await User.find();

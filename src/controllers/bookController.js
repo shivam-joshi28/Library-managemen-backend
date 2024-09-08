@@ -1,6 +1,6 @@
 const Book = require("../models/book");
 
-// Get all books
+// API to Get all books
 const getBooks = async (req, res) => {
   try {
     const books = await Book.find();
@@ -10,7 +10,7 @@ const getBooks = async (req, res) => {
   }
 };
 
-// Add a new book
+// API to Add a new book
 const createBook = async (req, res) => {
   const { name, category, rentPerDay } = req.body;
   const newBook = new Book({ name, category, rentPerDay });
@@ -22,7 +22,7 @@ const createBook = async (req, res) => {
   }
 };
 
-// Get books by name or term
+//API to  Get books by name or term
 const searchBooksByName = async (req, res) => {
   const { name } = req.query;
   try {
@@ -33,7 +33,7 @@ const searchBooksByName = async (req, res) => {
   }
 };
 
-// Get books by a single price
+// API to Get books by a single price
 const getBooksByPrice = async (req, res) => {
   const { price } = req.query;
   try {
@@ -44,7 +44,7 @@ const getBooksByPrice = async (req, res) => {
   }
 };
 
-// Filter books by category, name, and single price
+// API to Filter books by category, name, and single price
 const filterBooksByCategoryAndNameAndPrice = async (req, res) => {
   const { category, name, price } = req.query;
   try {
