@@ -1,0 +1,102 @@
+[
+  {
+    "name": "The Great Gatsby",
+    "category": "Fiction",
+    "rentPerDay": 5
+  },
+  {
+    "name": "To Kill a Mockingbird",
+    "category": "Fiction",
+    "rentPerDay": 4
+  },
+  {
+    "name": "1984",
+    "category": "Dystopian",
+    "rentPerDay": 6
+  }
+  {
+    "name": "Moby Dick",
+    "category": "Adventure",
+    "rentPerDay": 7
+  },
+  {
+    "name": "War and Peace",
+    "category": "Historical Fiction",
+    "rentPerDay": 10
+  },
+  {
+    "name": "Pride and Prejudice",
+    "category": "Romance",
+    "rentPerDay": 5
+  },
+  {
+    "name": "The Catcher in the Rye",
+    "category": "Fiction",
+    "rentPerDay": 4
+  },
+  {
+    "name": "Brave New World",
+    "category": "Dystopian",
+    "rentPerDay": 6
+  },
+  {
+    "name": "The Odyssey",
+    "category": "Epic",
+    "rentPerDay": 8
+  },
+  {
+    "name": "Crime and Punishment",
+    "category": "Psychological Fiction",
+    "rentPerDay": 7
+  },
+  {
+    "name": "Jane Eyre",
+    "category": "Romance",
+    "rentPerDay": 4
+  },
+  {
+    "name": "The Lord of the Rings",
+    "category": "Fantasy",
+    "rentPerDay": 9
+  },
+  {
+    "name": "Harry Potter and the Sorcerer's Stone",
+    "category": "Fantasy",
+    "rentPerDay": 8
+  },
+  {
+    "name": "The Hobbit",
+    "category": "Fantasy",
+    "rentPerDay": 6
+  },
+  {
+    "name": "The Alchemist",
+    "category": "Philosophical",
+    "rentPerDay": 5
+  },
+  {
+    "name": "The Kite Runner",
+    "category": "Historical Fiction",
+    "rentPerDay": 7
+  },
+  {
+    "name": "The Road",
+    "category": "Post-Apocalyptic",
+    "rentPerDay": 6
+  },
+  {
+    "name": "The Shining",
+    "category": "Horror",
+    "rentPerDay": 5
+  },
+  {
+    "name": "Gone Girl",
+    "category": "Thriller",
+    "rentPerDay": 6
+  },
+  {
+    "name": "The Hunger Games",
+    "category": "Dystopian",
+    "rentPerDay": 7
+  }
+]

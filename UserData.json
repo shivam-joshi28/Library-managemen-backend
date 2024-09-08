@@ -1,0 +1,27 @@
+[
+  {
+    "user_id": "user001",
+    "name": "John Doe",
+    "email": "john.doe@example.com"
+  },
+  {
+    "user_id": "user002",
+    "name": "Jane Smith",
+    "email": "jane.smith@example.com"
+  },
+  {
+    "user_id": "user003",
+    "name": "Alice Johnson",
+    "email": "alice.johnson@example.com"
+  },
+  {
+    "user_id": "user004",
+    "name": "Bob Brown",
+    "email": "bob.brown@example.com"
+  },
+  {
+    "user_id": "user005",
+    "name": "Charlie Green",
+    "email": "charlie.green@example.com"
+  }
+]

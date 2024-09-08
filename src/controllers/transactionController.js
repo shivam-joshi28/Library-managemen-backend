@@ -1,17 +1,13 @@
 const Transaction = require("../models/transaction");
 const Book = require("../models/book");
 // controllers/transactionController.js
+const User = require("../models/user"); // Adjust the path to your actual User model
 
 // Create a new transaction (issue a book)
 const issueBook = async (req, res) => {
   try {
     const { bookName, userId, issueDate } = req.body;
 
-    // // Validate if the user exists
-    // const user = await user.findById(userId);
-    // if (!user) {
-    //   return res.status(404).json({ message: "User not found" });
-    // }
 
     // Validate if the book exists
     const book = await Book.findOne({ name: bookName });
@@ -37,43 +33,6 @@ const issueBook = async (req, res) => {
       .json({ message: "Error issuing book", error: error.message });
   }
 };
-
-// Return a book
-// const returnBook = async (req, res) => {
-//   try {
-//     const { bookName, userId, returnDate } = req.body;
-
-//     const transaction = await Transaction.findOne({
-//       bookName,
-//       userId,
-//       returnDate: { $exists: false },
-//     });
-
-//     if (!transaction) {
-//       return res
-//         .status(404)
-//         .json({ message: "Transaction not found for this book and user" });
-//     }
-
-//     transaction.returnDate = returnDate;
-//     const daysRented =
-//       (new Date(returnDate) - new Date(transaction.issueDate)) /
-//       (1000 * 60 * 60 * 24);
-//     transaction.totalRent = daysRented * transaction.rentPerDay;
-
-//     const updatedTransaction = await transaction.save();
-//     res.status(200).json({
-//       message: "Book returned successfully",
-//       transaction: updatedTransaction,
-//     });
-//   } catch (error) {
-//     res
-//       .status(500)
-//       .json({ message: "Error returning book", error: error.message });
-//   }
-// };
-
-// src/controllers/transactionController.js
 
 const returnBook = async (req, res) => {
   try {
@@ -140,12 +99,11 @@ const returnBook = async (req, res) => {
   }
 };
 
-// src/controllers/transactionController.js
-
 const getBookIssuers = async (req, res) => {
   const { bookName } = req.query;
 
   try {
+    // Find all transactions for the book
     const transactions = await Transaction.find({ bookName });
 
     if (transactions.length === 0) {
@@ -154,14 +112,31 @@ const getBookIssuers = async (req, res) => {
         .json({ message: "No transactions found for this book" });
     }
 
+    // Get the current transaction where the book hasn't been returned
     const currentTransaction = transactions.find((t) => !t.returnDate);
-    const issuers = transactions.map((t) => t.userId);
+
+    // Map through transactions and get the user IDs (user_id)
+    const issuersUserIds = transactions.map((t) => t.userId); // userId is user_id in the Transaction model
+
+    // Fetch user details for each user_id
+    const issuers = await User.find(
+      { user_id: { $in: issuersUserIds } },
+      "name"
+    ); // Find by user_id
+
+    // If there's a current transaction, fetch the current issuer's name
+    let currentIssuerName = "Not issued currently";
+    if (currentTransaction) {
+      const currentIssuer = await User.findOne({
+        user_id: currentTransaction.userId,
+      });
+      currentIssuerName = currentIssuer ? currentIssuer.name : "Unknown User";
+    }
 
     res.json({
       totalCount: issuers.length,
-      currentIssuer: currentTransaction
-        ? currentTransaction.userId
-        : "Not issued currently",
+      currentIssuer: currentIssuerName,
+      issuers: issuers.map((user) => user.name), // Map issuers to just their names
     });
   } catch (error) {
     res

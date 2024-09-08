@@ -5,6 +5,7 @@ const User = require("../models/user");
 const createUser = async (req, res) => {
   try {
     const newUser = new User({
+      user_id: req.body.user_id,
       name: req.body.name,
       email: req.body.email,
     });
